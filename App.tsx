@@ -6,8 +6,9 @@ import {ScrollView, Text, View} from 'react-native';
 function App(): JSX.Element {
   const [dados, setDados] = React.useState([]);
   return (
-    <View>
+    <View testID="viewPrincipal">
       <Button
+        testID="botaoBuscar"
         title="Buscar"
         onPress={async () => {
           const {data} = await axios.get(
@@ -16,12 +17,12 @@ function App(): JSX.Element {
           setDados(data);
         }}
       />
-      <ScrollView>
+      <ScrollView testID="scroll">
         {dados.map(item => {
           return (
-            <>
-              <Text key={item.id}>{item.titulo} - {item.autores}</Text>
-            </>
+            <Text testID={String(item.id)} key={item.id}>
+              {item.titulo} - {item.autores}
+            </Text>
           );
         })}
       </ScrollView>
